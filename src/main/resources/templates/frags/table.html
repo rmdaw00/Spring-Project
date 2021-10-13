@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome Not</title>
+
+</head>
+<body>
+ 	
+  	<div class="container" th:fragment="events">
+  	<table class="dataTable table table-hover table-striped">
+  		<tr>
+  			<th>ID</th>
+  			<th>Name</th>
+  			<th>Date</th>
+  			<th>Actions</th>
+  		</tr>
+  		
+ 		<tr th:if="${events.size==0}">
+ 				<td colspan="4" class="text-center">No Events Found</td> 
+  		</tr>
+  		
+  		<tr th:each="event:${events}">
+  			<td th:text="${event.Id}"></td>
+  			<td th:text="${event.title}"></td>
+  			<td th:text="${#dates.format(event.date,'yyyy-MM-dd')}"></td>
+  			<td>
+  				<a th:href="@{/events/edit(id=${event.id})}"><i class="bi bi-pencil text-success p-2"></i></a>
+  				<a th:href="@{/events/delete(id=${event.id})}"><i class="bi bi-trash text-danger p-2"></i></a>
+  			</td>
+  		</tr>
+  	</table>
+
+
+  	</div>
+  	
+  	
+	 <div class="container" th:fragment="users">
+	  	<table class="dataTable table table-hover table-striped">
+	  		<tr>
+	  			<th>ID</th>
+	  			<th>Name</th>
+	  			<th>Email</th>
+	  			<th>Actions</th>
+	  		</tr>
+	  		
+	 		<tr th:if="${users.size==0}">
+	 				<td colspan="4" class="text-center">No Users Found</td> 
+	  		</tr>
+	  		
+	  		<tr th:each="user:${users}">
+	  			<td th:text="${user.Id}"></td>
+	  			<td th:text="${user.name}"></td>
+	  			<td th:text="${user.email}"></td>
+	  			<td>
+	  				<a th:href="@{/users/edit(id=${user.id})}"><i class="bi bi-pencil text-success p-2"></i></a>
+	  				<a th:href="@{/users/delete(id=${user.id})}"><i class="bi bi-trash text-danger p-2"></i></a>
+	  			</td>
+	  		</tr>
+	  	</table>
+  	</div>
+  	
+  	<div class="container" th:fragment="tickets">
+	  	<table class="dataTable table table-hover table-striped">
+	  		<tr>
+	  			<th>ID</th>
+	  			<th>Event</th>
+	  			<th>User</th>
+	  			<th>Place</th>
+	  			<th>Actions</th>
+	  		</tr>
+	  		
+	 		<tr th:if="${tickets.size==0}">
+	 				<td colspan="5" class="text-center">No Tickets Found</td> 
+	  		</tr>
+	  		
+	  		<tr th:each="ticket:${tickets}">
+	  			<td th:text="${ticket.Id}"></td>
+	  			<td th:text="${ticket.event==null?'Deleted (id:'+ticket.eventId+')':ticket.event.title}"></td>
+	  			<td th:text="${ticket.user==null?'Deleted (id:'+ticket.eventId+')':ticket.user.name}"></td>
+	  			<td th:text="${ticket.place}"></td>
+	  			<td>
+	  				<a th:href="@{/tickets/cancel(id=${ticket.id})}"><i class="bi bi-trash text-danger p-2"></i></a>
+	  			</td>
+	  		</tr>
+	  	</table>
+  	</div>
+  	
+  	
+</body>
+</html>

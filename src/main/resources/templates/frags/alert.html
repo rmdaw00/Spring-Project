@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Event Booking</title>
+</head>
+<body>
+	<header th:fragment="alert">
+	  	<div class="container">
+			<div th:if="${msgSuccess!=null}" class="alert alert-success alert-dismissible fade show" role="alert">
+				<span th:text="${msgSuccess}"></span>
+				 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			
+			<div th:if="${msgError!=null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+				<span th:text="${msgError}"></span>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		</div>
+  	</header>
+  	
+  	
+</body>
+</html>

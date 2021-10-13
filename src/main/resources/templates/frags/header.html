@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome Not</title>
+</head>
+<body>
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="/">Event Booking App</a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		        
+		        <li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="/events" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		            Events
+		          </a>
+		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item" href="/events">By Title</a></li>
+		            <li><a class="dropdown-item" href="/events/date">By Date</a></li>
+		            <li><hr class="dropdown-divider"></li>
+		            <li><a class="dropdown-item" href="/events/create">New Event</a></li>
+		            </ul>
+		        </li>
+		       
+		         <li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="/users" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		            Users
+		          </a>
+		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item" href="/users">By Name</a></li>
+		            <li><hr class="dropdown-divider"></li>
+		            <li><a class="dropdown-item" href="/users/create">New User</a></li>
+		            </ul>
+		        </li>
+		         
+		        <li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="/tickets" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		            Tickets
+		          </a>
+		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item" href="/tickets">By User</a></li>
+		            <li><a class="dropdown-item" href="/tickets/event">By Event</a></li>
+		            <li><hr class="dropdown-divider"></li>
+		            <li><a class="dropdown-item" href="/tickets/create">New Ticket</a></li>
+		            </ul>
+		        </li>
+		      </ul>
+
+			 	<div th:switch="${controller}">
+			 		<div th:case="'/events'"><div th:with="placeholder='Search By Title'"></div></div>
+			 		<div th:case="'/users'"><div th:with="placeholder='Search By Title'"></div></div>
+			 	</div>
+			 	
+		      <form class="d-flex" th:action="${controller}">
+		        <input th:if="${controller!=null}" class="form-control me-2" type="search" placeholder="Search By Title" aria-label="Search" name="search" th:value="${search}">
+		        <button th:if="${controller!=null}" class="btn btn-outline-success" type="submit">Search</button>
+		      </form>
+		    </div>
+		  </div>
+		</nav>
+
+
+  	</header>
+  	
+  	
+</body>
+</html>

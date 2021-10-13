@@ -1,0 +1,14 @@
+.error {
+	color:red;
+	background-color: lightcoral;
+	padding: 1em
+}
+
+.success {
+	color:green;
+	background-color:lightgreen;
+	padding: 1em;
+	
+}
+
+

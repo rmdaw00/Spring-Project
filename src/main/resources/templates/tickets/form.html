@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Welcome Not</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+<body>
+  	<div th:replace="/frags/header::header"></div>
+  	<div th:replace="/frags/alert::alert"></div>
+  	<div th:replace="/frags/menu::ticket"></div>
+  	
+	<div class="container">
+		<div class="row gx-5 p-3" >
+		  	<form th:action="${action}" th:object="${ticket}" method="post">
+		  			  	
+			  	<div class="row mb-3">
+				  	<div class="form-group col-md-3">
+				  		<label th:if="*{Id!=0}" for="id">ID: </label>
+				  		<input th:type="*{Id!=0?'text':'hidden'}" class="form-control" th:field="*{Id}" id="id" readonly>
+				  		<p th:if="${#fields.hasErrors('Id')}" th:errorclass="text-danger" th:errors="*{Id}" />
+				  	</div>
+			  	</div>
+			  	
+			  	<div class="row mb-3">
+				  	<div class="form-group col-md-6 ">
+				  		<label for="event" class="form-title">Event: </label>
+				  		<select th:field=*{eventId} class="form-control" th:errorclass="bg-danger" id="event">
+				  			<option th:each="entry:${events}" th:value="${entry.key}" th:text="${entry.value}">
+				  		</select>
+				  		<p th:if="${#fields.hasErrors('eventId')}" th:errorclass="text-danger" th:errors="*{eventId}" />
+			
+					</div>
+		  		
+				  	<div class="form-group col-md-6 ">
+				  		<label for="user" class="form-title">User: </label>
+				  		<select th:field=*{userId} class="form-control" th:errorclass="bg-danger" id="user">
+				  			<option th:each="entry:${users}" th:value="${entry.key}" th:text="${entry.value}">
+				  		</select>
+				  		<p th:if="${#fields.hasErrors('userId')}" th:errorclass="text-danger" th:errors="*{userId}" />
+				  	</div>
+			  	</div>
+			  	<div class="row mb-3">	
+				  	<div class="form-group col-md-6 ">
+				  		<label for="category" class="form-title">Category: </label>
+				  		<select th:field=*{category} class="form-control" th:errorclass="bg-danger" id="category">
+				  			<option th:each="cat:${categories}" th:value="${cat}" th:text="${cat}">  
+				  				<!-- th:value="${categories.indexOf(cat)}" -->
+				  		</select>
+				  		<p th:if="${#fields.hasErrors('category')}" th:errorclass="text-danger" th:errors="*{category}" />
+				  	</div>
+		  		
+				  	<div class="form-group col-md-6 ">
+				  		<label for="place" class="form-title">Place: </label>
+				  		<input type="number" min="1" th:field=*{place} class="form-control" th:errorclass="bg-danger" id="place"/>
+				  		<p th:if="${#fields.hasErrors('place')}" th:errorclass="text-danger" th:errors="*{place}" />
+				  	</div>
+		  		</div>
+		  		<input type="submit"  class="btn btn-primary" value="submit"/>
+		  		
+		  	</form>
+	  	</div>
+  	</div>
+</body>
+</html>

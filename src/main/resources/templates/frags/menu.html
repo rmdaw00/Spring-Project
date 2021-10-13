@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome Not</title>
+
+
+</head>
+<body>
+	<header th:fragment="event">
+	  	<nav class="submenu">
+		  	<div class="container">
+		  		<div class="row justify-content-center align-items-center p-3 my-2 bg-light bg-gradient">
+			  		<div class="col"> 
+			  			<h2><a href="/events" class="text-dark text-decoration-none">Events</a></h2>
+			  		</div>
+			  		<div class="col-auto">
+				  		<a href="/events"><button th:if="${#httpServletRequest.requestURI!='/events'}" class="btn btn-primary">By Title</button></a>
+				  		<a href="/events/date"><button th:if="${#httpServletRequest.requestURI!='/events/date'}" class="btn btn-primary">By Date</button></a>
+				  		<a href="/events/create"><button th:if="${#httpServletRequest.requestURI!='/events/create'}" class="btn btn-success">New Event</button></a>
+			  		</div>
+		  		</div>
+	  		</div>
+	  	</nav>
+  	</header>
+  	
+  	
+	<header th:fragment="user">
+	  	<nav class="submenu">
+		  	<div class="container">
+		  		<div class="row justify-content-center align-items-center p-3 my-2 bg-light bg-gradient">
+			  		<div class="col"> 
+			  			<h2><a href="/users" class="text-dark text-decoration-none">Users</a></h2>
+			  		</div>
+			  		<div class="col-auto">
+				  		<a href="/users"><button th:if="${#httpServletRequest.requestURI!='/users'}" class="btn btn-primary">By Name</button></a>
+				  		<a href="/users/create"><button th:if="${#httpServletRequest.requestURI!='/users/create'}"  class="btn btn-success">New User</button></a>
+			  		</div>
+		  		</div>
+	  		</div>
+	  	</nav>
+  	</header>
+  	
+  	
+  	<header th:fragment="ticket">
+	  	<nav class="submenu">
+		  	<div class="container">
+		  		<div class="row justify-content-center align-items-center p-3 my-2 bg-light bg-gradient">
+			  		<div class="col"> 
+			  			<h2><a href="/tickets" class="text-dark text-decoration-none">Tickets</a></h2>
+			  		</div>
+			  		<div class="col-auto">
+				  		<a href="/tickets"><button th:if="${#httpServletRequest.requestURI!='/tickets'}" class="btn btn-primary">By User</button></a>
+				  		<a href="/tickets/event"><button th:if="${#httpServletRequest.requestURI!='/tickets/event'}" class="btn btn-primary">By Event</button></a>
+				  		<a href="/tickets/create"><button th:if="${#httpServletRequest.requestURI!='/tickets/create'}"  class="btn btn-success">New Ticket</button></a>
+			  		</div>
+		  		</div>
+	  		</div>
+	  	</nav>
+  	</header>
+  	
+</body>
+</html>

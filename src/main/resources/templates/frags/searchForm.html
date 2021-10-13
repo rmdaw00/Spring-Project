@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome Not</title>
+</head>
+<body>
+	
+		<div class="container" th:fragment="eventByDate">
+			<form action="/events/date" class="row justify-content-end align-items-center py-2"> 
+				<div class="form-group col-auto">
+			  		<label for="id">Date: </label>
+			  	</div>
+				<div class="form-group col-auto">
+			  		<input th:type="date" th:name="date" class="form-control" th:value="${#dates.format(searchDate,'yyyy-MM-dd')}" id="date">
+			  	</div>
+				<div class="form-group col-auto">
+				  		<button th:type="submit" class="btn btn-primary"> Search</button>
+			  	</div>
+			</form>
+		</div>
+		
+		<div class="container" th:fragment="ticketByName">
+			<form action="/tickets" class="row justify-content-end align-items-center py-2"> 
+				<div class="form-group col-auto">
+			  		<label for="user" class="form-title">User: </label>
+			  	</div>
+			  	<div class="form-group col-auto ">
+			  		<select th:name="userId" class="form-control" id="user">
+			  			<option value=""></option>
+			  			<option th:each="entry:${users}" th:value="${entry.key}" th:text="${entry.value}" th:selected="${userId==entry.Key}"/>
+			  		</select>
+			  	</div>
+				<div class="form-group col-auto">
+				  		<button th:type="submit" class="btn btn-primary"> Search</button>
+			  	</div>
+			</form>
+		</div>
+		
+		
+		<div class="container" th:fragment="ticketByEvent">
+			<form action="/tickets/event" class="row justify-content-end align-items-center py-2"> 
+				<div class="form-group col-auto">
+			  		<label for="event" class="form-title">Event: </label>
+			  	</div>
+			  	<div class="form-group col-auto ">
+			  		<select th:name="eventId" class="form-control" id="event">
+			  			<option value=""></option>
+			  			<option th:each="entry:${events}" th:value="${entry.key}" th:text="${entry.value}" th:selected="${eventId==entry.Key}"/>
+			  		</select>
+			  	</div>
+				<div class="form-group col-auto">
+				  		<button th:type="submit" class="btn btn-primary"> Search</button>
+			  	</div>
+			</form>
+		</div>
+		
+
+    	
+</body>
+</html>

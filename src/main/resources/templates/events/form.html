@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Welcome Not</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+<body>
+  	<div th:replace="/frags/header::header"></div>
+  	<div th:replace="/frags/alert::alert"></div>
+  	<div th:replace="/frags/menu::event"></div>
+  	
+	<div class="container">
+		<div class="row gx-5 p-3" >
+		  	<form th:action="${action}" th:object="${event}" method="post">
+		  	
+		  	<ul th:if="${#fields.hasErrors('global')}">
+			  <li th:each="err : ${#fields.errors('global')}" th:text="${err}">Trying anything at this point</li>
+			</ul>
+			
+			<ul th:if="${#fields.hasErrors('all')}">
+			  <li th:each="err : ${#fields.errors('all')}" th:text="${err}">Input is incorrect</li>
+			</ul>
+			
+			<ul th:if="${#fields.hasErrors('*')}">
+			  <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+			</ul>
+		  	
+		  	<div class="row mb-3">
+			  	<div class="form-group col-md-3">
+			  		<label th:if="*{Id!=0}" for="id">ID: </label>
+			  		<input th:type="*{Id!=0?'text':'hidden'}" class="form-control" th:field="*{Id}" id="id" readonly>
+			  		<p th:if="${#fields.hasErrors('Id')}" th:errorclass="text-danger" th:errors="*{Id}" />
+			  	</div>
+		  	</div>
+		  	
+		  	<div class="row mb-3">
+		  	<div class="form-group col-md-6 ">
+		  		<label for="title" class="form-title">Title: </label>
+		  		<input th:type="text" class="form-control" th:field="*{title}" th:errorclass="bg-danger" id="title">
+		  		<p th:if="${#fields.hasErrors('title')}" th:errorclass="error" th:errors="*{title}" />
+		  	</div>
+		  	<div class="form-group col-md-6">
+		  		<label for="id">Date: </label>
+		  		<input th:type="date" th:name="date" class="form-control" th:value="*{#dates.format(date,'yyyy-MM-dd')}" id="date">
+		  		<p th:if="${#fields.hasErrors('date')}" th:errorclass="error" th:errors="*{date}" />
+		  	</div>
+		  		</div>
+		  		<input type="submit"  class="btn btn-primary" value="submit"/>
+		  		
+		  	</form>
+	  	</div>
+  	</div>
+</body>
+</html>
