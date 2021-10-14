@@ -46,18 +46,15 @@
 		            <li><a class="dropdown-item" href="/tickets">By User</a></li>
 		            <li><a class="dropdown-item" href="/tickets/event">By Event</a></li>
 		            <li><hr class="dropdown-divider"></li>
+		            <li><a class="dropdown-item" href="/tickets/ReportPDF">Full PDF Report</a></li>
+		            <li><hr class="dropdown-divider"></li>
 		            <li><a class="dropdown-item" href="/tickets/create">New Ticket</a></li>
 		            </ul>
 		        </li>
 		      </ul>
-
-			 	<div th:switch="${controller}">
-			 		<div th:case="'/events'"><div th:with="placeholder='Search By Title'"></div></div>
-			 		<div th:case="'/users'"><div th:with="placeholder='Search By Title'"></div></div>
-			 	</div>
 			 	
 		      <form class="d-flex" th:action="${controller}">
-		        <input th:if="${controller!=null}" class="form-control me-2" type="search" placeholder="Search By Title" aria-label="Search" name="search" th:value="${search}">
+		        <input th:if="${controller!=null}" class="form-control me-2" type="search" th:placeholder="${placeholder}" aria-label="Search" name="search" th:value="${search}">
 		        <button th:if="${controller!=null}" class="btn btn-outline-success" type="submit">Search</button>
 		      </form>
 		    </div>

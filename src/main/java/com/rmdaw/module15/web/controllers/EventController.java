@@ -44,6 +44,11 @@ public class EventController implements ControllerExtras {
 		return "/events";
 	}
 	
+	@ModelAttribute("placeholder")
+	public String getPlaceHolder() {
+		return "By Title";
+	}
+	
 	public EventController(BookingFacadeImplementation facade) {
 		super();
 		this.facade = facade;

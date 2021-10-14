@@ -1,8 +1,11 @@
 package com.rmdaw.module15.web.controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -19,20 +22,24 @@ import com.rmdaw.module15.data.model.classes.local.TicketLocal;
 import com.rmdaw.module15.data.model.interfaces.IEvent;
 import com.rmdaw.module15.data.model.interfaces.ITicket;
 import com.rmdaw.module15.data.model.interfaces.IUser;
+import com.rmdaw.module15.web.PDFTicketReportGenerator;
 
 @Controller
 @RequestMapping("/tickets")
 public class TicketController {
 
 	private BookingFacadeImplementation facade;
+	private PDFTicketReportGenerator pdfReportGen;
 
 	private static final String MESSAGE_SUCCESS = "msgSuccess";
 	private static final String MESSAGE_ERROR = "msgError";
 	private static final String MESSAGE_FORM_ERROR = "Error in the form";
 
-	public TicketController(BookingFacadeImplementation facade) {
+	public TicketController(BookingFacadeImplementation facade,
+							PDFTicketReportGenerator pdfReportGen) {
 		super();
 		this.facade = facade;
+		this.pdfReportGen = pdfReportGen;
 	}
 	
 	@GetMapping
@@ -51,6 +58,19 @@ public class TicketController {
 		model.addAttribute("userId", userId);
 		model.addAttribute("tickets", tickets);
 		return "tickets/home";
+	}
+	
+	
+	@GetMapping("/ReportPDF")
+	public void getTicketsReport(HttpServletResponse response) {
+		response.setContentType("application/pdf");
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd_hh:mm");
+		
+		response.setHeader("Content-Disposition", "inline; "
+			+ "filename=TicketReport" + formatter.format(new Date()) + ".pdf");
+		
+		pdfReportGen.export(response);
 	}
 	
 	@GetMapping("/event")

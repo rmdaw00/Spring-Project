@@ -50,6 +50,7 @@
 			  			<h2><a href="/tickets" class="text-dark text-decoration-none">Tickets</a></h2>
 			  		</div>
 			  		<div class="col-auto">
+			  			<a href="/tickets/ReportPDF"><button class="btn btn-warning">Full PDF Report</button></a>
 				  		<a href="/tickets"><button th:if="${#httpServletRequest.requestURI!='/tickets'}" class="btn btn-primary">By User</button></a>
 				  		<a href="/tickets/event"><button th:if="${#httpServletRequest.requestURI!='/tickets/event'}" class="btn btn-primary">By Event</button></a>
 				  		<a href="/tickets/create"><button th:if="${#httpServletRequest.requestURI!='/tickets/create'}"  class="btn btn-success">New Ticket</button></a>

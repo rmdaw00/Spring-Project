@@ -31,6 +31,11 @@ public class UserController implements ControllerExtras {
 	public String getControllerName() {
 		return ("/users");
 	}
+	
+	@ModelAttribute("placeholder")
+	public String getPlaceHolder() {
+		return "By Name";
+	}
 
 	public UserController(BookingFacadeImplementation facade) {
 		super();
