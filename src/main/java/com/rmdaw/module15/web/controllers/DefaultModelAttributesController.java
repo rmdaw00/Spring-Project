@@ -8,7 +8,9 @@ import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.rmdaw.module15.business.facade.BookingFacadeImplementation;
@@ -21,6 +23,7 @@ import com.rmdaw.module15.data.model.classes.local.UserLocal;
 import com.rmdaw.module15.data.model.interfaces.IEvent;
 import com.rmdaw.module15.data.model.interfaces.ITicket;
 import com.rmdaw.module15.data.model.interfaces.IUser;
+import com.rmdaw.module15.exceptions.AppException;
 
 @Service
 @ControllerAdvice
@@ -31,6 +34,12 @@ public class DefaultModelAttributesController {
 	public DefaultModelAttributesController(BookingFacadeImplementation facade) {
 		super();
 		this.facade = facade;
+	}
+	
+	@ExceptionHandler(AppException.class)
+	public String gotException(AppException exception, Model model) {
+		model.addAttribute("message", exception.getMessage());
+		return "error";
 	}
 
 	@Value("${app.localDataSet}")

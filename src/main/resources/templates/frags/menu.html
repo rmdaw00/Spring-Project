@@ -11,8 +11,8 @@
 	  	<nav class="submenu">
 		  	<div class="container">
 		  		<div class="row justify-content-center align-items-center p-3 my-2 bg-light bg-gradient">
-			  		<div class="col"> 
-			  			<h2><a href="/events" class="text-dark text-decoration-none">Events</a></h2>
+			  		<div class="col hover-shadow"> 
+			  			<h2><a href="/events" class="text-dark text-decoration-none"> <i class="bi bi-calendar-event"></i> Events</a></h2>
 			  		</div>
 			  		<div class="col-auto">
 				  		<a href="/events"><button th:if="${#httpServletRequest.requestURI!='/events'}" class="btn btn-primary">By Title</button></a>
@@ -29,8 +29,8 @@
 	  	<nav class="submenu">
 		  	<div class="container">
 		  		<div class="row justify-content-center align-items-center p-3 my-2 bg-light bg-gradient">
-			  		<div class="col"> 
-			  			<h2><a href="/users" class="text-dark text-decoration-none">Users</a></h2>
+			  		<div class="col "> 
+			  			<h2><a href="/users" class="text-dark text-decoration-none"> <i class="bi bi-people"></i> Users</a></h2>
 			  		</div>
 			  		<div class="col-auto">
 				  		<a href="/users"><button th:if="${#httpServletRequest.requestURI!='/users'}" class="btn btn-primary">By Name</button></a>
@@ -47,7 +47,7 @@
 		  	<div class="container">
 		  		<div class="row justify-content-center align-items-center p-3 my-2 bg-light bg-gradient">
 			  		<div class="col"> 
-			  			<h2><a href="/tickets" class="text-dark text-decoration-none">Tickets</a></h2>
+			  			<h2><a href="/tickets" class="text-dark text-decoration-none"> <i class="bi bi-receipt-cutoff"></i> Tickets</a></h2>
 			  		</div>
 			  		<div class="col-auto">
 			  			<a href="/tickets/ReportPDF"><button class="btn btn-warning">Full PDF Report</button></a>

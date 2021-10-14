@@ -10,10 +10,17 @@
 </head>
 <body>
   	<div th:replace="/frags/header::header"></div>
-  	<div th:replace="/frags/menu::event"></div>
-  	<div th:replace="/frags/menu::user"></div>
-  	<div th:replace="/frags/menu::ticket"></div>
   	
-  	<p th:if="${var1!=null}" th:text="${var1.ok}"/>
+  	<div class="container">
+  		<div class="row justify-content-center align-items-center p-3 my-2">
+  			<div class="col-auto">
+  				<button class="btn btn-danger bi-bug-fill"> Bug</button>
+  			</div>
+  			<div class="col-auto">
+  				<p class="text-danger">You have got a small bug!</p>
+  				<p class="text-danger" th:text="${'it said: ' + message}"></p>
+  			</div>
+  		</div>
+  	</div>
 </body>
 </html>

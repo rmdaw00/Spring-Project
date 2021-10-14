@@ -8,16 +8,16 @@
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		  <div class="container-fluid">
-		    <a class="navbar-brand" href="/">Event Booking App</a>
+		    <a class="navbar-brand" href="/"> <i class="bi bi-calendar2-check-fill text-primary"></i> Event Booking App</a>
 		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		      <span class="navbar-toggler-icon"></span>
 		    </button>
 		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 		        
-		        <li class="nav-item dropdown">
+		        <li class="nav-item dropdown  hover-shadow">
 		          <a class="nav-link dropdown-toggle" href="/events" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-		            Events
+		            <i class="bi bi-calendar-event"></i> Events
 		          </a>
 		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 		            <li><a class="dropdown-item" href="/events">By Title</a></li>
@@ -29,7 +29,7 @@
 		       
 		         <li class="nav-item dropdown">
 		          <a class="nav-link dropdown-toggle" href="/users" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-		            Users
+		            <i class="bi bi-people"></i> Users
 		          </a>
 		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 		            <li><a class="dropdown-item" href="/users">By Name</a></li>
@@ -40,7 +40,7 @@
 		         
 		        <li class="nav-item dropdown">
 			    	<a class="nav-link dropdown-toggle" href="/tickets" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			            Tickets
+			           <i class="bi bi-receipt-cutoff"></i> Tickets
 			        </a>
 			        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 			            <li><a class="dropdown-item" href="/tickets">By User</a></li>
@@ -53,6 +53,9 @@
 			            <li><a class="dropdown-item" href="/tickets/importXML">Import XML</a></li>
 	            	</ul>
 		        </li>
+		          <li class="nav-item">
+        			<a class="nav-link" href="/bug"> <i class="bi bi-bug text-danger"></i> Get Bugged!</a>
+      			  </li>
 		      </ul>
 			 	
 		      <form class="d-flex" th:action="${controller}">

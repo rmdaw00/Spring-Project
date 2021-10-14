@@ -12,4 +12,12 @@ public class HomeController {
 		
 		return "index";
 	}
+	
+	
+	@RequestMapping("/bug")
+	public String getBugged(Model model) {
+		Long var1 = 200L;
+		model.addAttribute("var1", var1);
+		return "index";
+	}
 }
