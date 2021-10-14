@@ -1,5 +1,9 @@
 package com.rmdaw.module15.web.controllers;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,6 +12,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,28 +24,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rmdaw.module15.aspects.Loggable;
 import com.rmdaw.module15.business.facade.BookingFacadeImplementation;
+import com.rmdaw.module15.data.model.classes.collections.local.Tickets;
 import com.rmdaw.module15.data.model.classes.local.TicketLocal;
 import com.rmdaw.module15.data.model.interfaces.IEvent;
 import com.rmdaw.module15.data.model.interfaces.ITicket;
 import com.rmdaw.module15.data.model.interfaces.IUser;
-import com.rmdaw.module15.web.PDFTicketReportGenerator;
+import com.rmdaw.module15.web.TicketMarshler;
+import com.rmdaw.module15.web.TicketPDFReportGenerator;
 
 @Controller
 @RequestMapping("/tickets")
 public class TicketController {
 
 	private BookingFacadeImplementation facade;
-	private PDFTicketReportGenerator pdfReportGen;
+	private TicketPDFReportGenerator pdfReportGen;
+	private TicketMarshler ticketMarshler;
 
 	private static final String MESSAGE_SUCCESS = "msgSuccess";
 	private static final String MESSAGE_ERROR = "msgError";
 	private static final String MESSAGE_FORM_ERROR = "Error in the form";
 
 	public TicketController(BookingFacadeImplementation facade,
-							PDFTicketReportGenerator pdfReportGen) {
+							TicketPDFReportGenerator pdfReportGen,
+							TicketMarshler ticketMarshler) {
 		super();
 		this.facade = facade;
 		this.pdfReportGen = pdfReportGen;
+		this.ticketMarshler = ticketMarshler;
 	}
 	
 	@Loggable
@@ -73,6 +83,24 @@ public class TicketController {
 			+ "filename=TicketReport" + formatter.format(new Date()) + ".pdf");
 		
 		pdfReportGen.export(response);
+	}
+	
+	
+	@Loggable
+	@GetMapping("/exportXML")
+	public void doXMLExport(HttpServletResponse response)  {
+		response.setContentType("text/xml");
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd_hh:mm");
+		
+		response.setHeader("Content-Disposition", "inline; "
+			+ "filename=TicketExport" + formatter.format(new Date()) + ".xml");
+		try (InputStream inputStream = new FileInputStream(ticketMarshler.ticketsToXML())){
+			IOUtils.copy(inputStream, response.getOutputStream());
+		    response.flushBuffer();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Loggable

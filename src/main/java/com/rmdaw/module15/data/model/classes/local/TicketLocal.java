@@ -1,13 +1,23 @@
 package com.rmdaw.module15.data.model.classes.local;
 
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
 import org.springframework.stereotype.Component;
 
 import com.rmdaw.module15.data.model.interfaces.ITicket;
 
+@XmlRootElement(name = "ticket")
+@XmlAccessorType (XmlAccessType.FIELD)
 @Component
 public class TicketLocal implements ITicket {
 	
+	@XmlType(name = "category")
+	@XmlEnum
     public enum Category {STANDARD, PREMIUM, BAR}
     
 
@@ -23,7 +33,10 @@ public class TicketLocal implements ITicket {
     
 	private EventLocal event;
    
-  
+	public static TicketLocal createTicket() {
+    	return new TicketLocal(new UserLocal(), new EventLocal(), 0, Category.STANDARD );
+    }
+	
     public TicketLocal() {
     	
     }

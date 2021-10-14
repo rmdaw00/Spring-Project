@@ -20,14 +20,14 @@ import com.rmdaw.module15.data.model.interfaces.ITicket;
 import com.rmdaw.module15.data.model.interfaces.IUser;
 
 @Service
-public class PDFTicketReportGenerator {
+public class TicketPDFReportGenerator {
 	
 	
 	private BookingFacadeImplementation facade;
 	
 	
 	
-	public PDFTicketReportGenerator(BookingFacadeImplementation facade) {
+	public TicketPDFReportGenerator(BookingFacadeImplementation facade) {
 		super();
 		this.facade = facade;
 	}
