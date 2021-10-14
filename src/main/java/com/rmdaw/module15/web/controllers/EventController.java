@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.rmdaw.module15.aspects.Loggable;
 import com.rmdaw.module15.business.facade.BookingFacadeImplementation;
 import com.rmdaw.module15.data.model.classes.local.EventLocal;
 import com.rmdaw.module15.data.model.interfaces.IEvent;
@@ -53,7 +54,8 @@ public class EventController implements ControllerExtras {
 		super();
 		this.facade = facade;
 	}
-		
+	
+	@Loggable
 	@GetMapping
 	public String getAllEvents(@RequestParam(required = false) String search, 
 				@RequestParam(required = false, defaultValue = "1") int page, 
@@ -91,7 +93,7 @@ public class EventController implements ControllerExtras {
 	
 	
 	
-	
+	@Loggable
 	@GetMapping("/date")
 	public String getAllEventsByDate(@RequestParam(required = false) @DateTimeFormat(pattern="yyyy-MM-dd") Date date,
 				@RequestParam(required = false, defaultValue = "1") int page, 
@@ -124,13 +126,13 @@ public class EventController implements ControllerExtras {
 	
 	
 	
-	
+	@Loggable
 	@GetMapping("/create")
 	public String createEvent(Model model) {
 		model.addAttribute("action", "/events/create");
 		return "events/form";
 	}
-	
+	@Loggable
 	@PostMapping("/create")
 	public String createEvent(@Valid @ModelAttribute EventLocal event, 
 							BindingResult bindingResult, Model model) {
@@ -149,7 +151,7 @@ public class EventController implements ControllerExtras {
 	
 	
 	
-	
+	@Loggable
 	@GetMapping("/edit")
 	public String editEvent(@RequestParam Long id, Model model) {
 		IEvent event = null;
@@ -169,6 +171,7 @@ public class EventController implements ControllerExtras {
 		return "events/form";
 	}
 	
+	@Loggable
 	@PostMapping("/edit")
 	public String editEvent(@Valid @ModelAttribute EventLocal event, 
 							BindingResult bindingResult, Model model) {
@@ -190,7 +193,7 @@ public class EventController implements ControllerExtras {
 	
 	
 		
-	
+	@Loggable
 	@GetMapping("/delete")
 	public String deleteEvent(@RequestParam Long id, Model model) {
 

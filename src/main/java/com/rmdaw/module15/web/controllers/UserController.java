@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.rmdaw.module15.aspects.Loggable;
 import com.rmdaw.module15.business.facade.BookingFacadeImplementation;
 import com.rmdaw.module15.data.model.classes.local.UserLocal;
 import com.rmdaw.module15.data.model.interfaces.IUser;
@@ -42,6 +43,7 @@ public class UserController implements ControllerExtras {
 		this.facade = facade;
 	}
 	
+	@Loggable
 	@GetMapping
 	public String getUsersByName(@RequestParam(required = false) String search, 
 			@RequestParam(required = false, defaultValue = "1") int page, 
@@ -64,13 +66,14 @@ public class UserController implements ControllerExtras {
 	
 	
 	
-	
+	@Loggable
 	@GetMapping("/create")
 	public String createUser(Model model) {
 		model.addAttribute("action", "/users/create");
 		return "users/form";
 	}
 	
+	@Loggable
 	@PostMapping("/create")
 	public String createUser(@Valid @ModelAttribute UserLocal user, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -87,7 +90,7 @@ public class UserController implements ControllerExtras {
 	
 	
 	
-
+	@Loggable
 	@GetMapping("/edit")
 	public String editUser(@RequestParam Long id, Model model) {
 		IUser user = null;
@@ -107,7 +110,7 @@ public class UserController implements ControllerExtras {
 		return "users/form";
 	}
 	
-	
+	@Loggable
 	@PostMapping("/edit")
 	public String editUser(@Valid @ModelAttribute UserLocal user, BindingResult 
 							bindingResult, Model model) {
@@ -123,7 +126,7 @@ public class UserController implements ControllerExtras {
 		return getUsersByName(user.getName(),1, 10, model);
 	}
 	
-	
+	@Loggable
 	@GetMapping("/delete")
 	public String deleteUser(@RequestParam Long id, Model model) {
 		if (id!=null && facade.deleteUser(id)) {

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.rmdaw.module15.aspects.Loggable;
 import com.rmdaw.module15.business.facade.BookingFacadeImplementation;
 import com.rmdaw.module15.data.model.classes.local.TicketLocal;
 import com.rmdaw.module15.data.model.interfaces.IEvent;
@@ -42,6 +43,7 @@ public class TicketController {
 		this.pdfReportGen = pdfReportGen;
 	}
 	
+	@Loggable
 	@GetMapping
 	public String getTicketsByUser(@RequestParam(required = false) Long userId,
 			@RequestParam(required = false, defaultValue = "1") int page, 
@@ -60,7 +62,7 @@ public class TicketController {
 		return "tickets/home";
 	}
 	
-	
+	@Loggable
 	@GetMapping("/ReportPDF")
 	public void getTicketsReport(HttpServletResponse response) {
 		response.setContentType("application/pdf");
@@ -73,6 +75,7 @@ public class TicketController {
 		pdfReportGen.export(response);
 	}
 	
+	@Loggable
 	@GetMapping("/event")
 	public String getTicketsByEvent(@RequestParam(required = false) Long eventId,
 			@RequestParam(required = false, defaultValue = "1") int page, 
@@ -93,13 +96,14 @@ public class TicketController {
 	
 	
 	
-	
+	@Loggable
 	@GetMapping("/create")
 	public String createTicket(Model model) {
 		model.addAttribute("action", "/tickets/create");
 		return "tickets/form";
 	}
 	
+	@Loggable
 	@PostMapping("/create")
 	public String createTicket(@Valid @ModelAttribute TicketLocal ticket, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -116,6 +120,7 @@ public class TicketController {
 		}
 	}
 	
+	@Loggable
 	@GetMapping("/cancel")
 	public String createTicket(@RequestParam Long id, Model model) {
 		if (null!=id && facade.cancelTicket(id)) {
