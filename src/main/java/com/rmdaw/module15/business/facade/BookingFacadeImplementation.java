@@ -2,6 +2,8 @@ package com.rmdaw.module15.business.facade;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -107,5 +109,10 @@ public class BookingFacadeImplementation implements BookingFacade{
 	public boolean cancelTicket(long ticketId) {
 		return ticketService.cancelTicket(ticketId);
 	}
-
+	
+	@Override
+	public Map<ITicket, Boolean> loadBatchTickets(List<ITicket> tickets) { 
+		return ticketService.loadBatchTickets(tickets);
+	}
+	
 }

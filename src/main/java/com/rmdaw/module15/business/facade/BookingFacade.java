@@ -2,6 +2,7 @@ package com.rmdaw.module15.business.facade;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.rmdaw.module15.data.model.interfaces.IEvent;
 import com.rmdaw.module15.data.model.interfaces.ITicket;
@@ -138,5 +139,12 @@ public interface BookingFacade {
      * @return Flag whether anything has been canceled.
      */
     boolean cancelTicket(long ticketId);
-
+    
+    /**
+     * bulk load tickets
+     * 
+     * @param tickets
+     * @return results in a hashmap<ticket, boolean>
+     */
+    public Map<ITicket, Boolean> loadBatchTickets(List<ITicket> tickets);
 }

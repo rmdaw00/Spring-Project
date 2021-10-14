@@ -36,6 +36,11 @@ public class Tickets {
 	public void setTickets(List<TicketLocal> tickets) {
 		this.tickets = tickets;
 	}
+
+	@Override
+	public String toString() {
+		return "Tickets [tickets=" + tickets + "]";
+	}
 	
 	
 }

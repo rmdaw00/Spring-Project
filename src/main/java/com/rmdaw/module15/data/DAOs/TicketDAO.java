@@ -1,7 +1,9 @@
 package com.rmdaw.module15.data.DAOs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -162,6 +164,45 @@ public class TicketDAO extends CommonDAO{
 			//Local Storage
 			return localDB.removeTicket(ticketId);
 		}
+		
+	}
+	
+	@UpdateLocalDB
+	public Map<ITicket, Boolean> loadBatchTickets(List<ITicket> tickets) {
+		Map<ITicket, Boolean> results = new HashMap<>();
+		if (!localDataSet) {
+			//DATABASE
+			tickets.forEach(ticket -> {
+				ticket.setId(0); //to make sure they are treated as new
+				results.put(ticket, ticketRepo.save((Ticket)ticket)==null);
+			});
+		} else {
+			//Local Storage
+			tickets.forEach(ticket -> {
+				ticket.setId(0); //to make sure they are treated as new
+				if(localDB.getAllTickets().stream()
+						.anyMatch(t -> (ticket.getPlace()==t.getPlace() 
+										&& ticket.getEventId()==t.getEventId()))) {
+					//Place is taken
+					results.put(ticket,false);
+				} else {
+					
+					if (localDB.getEvent(ticket.getEventId())==null || 
+							localDB.getUser(ticket.getUserId())==null) {
+						results.put(ticket,false);
+					} else {
+					//saving ticket locally
+					localDB.putTicket(new TicketLocal(localDB.getUser(ticket.getUserId()), 
+							localDB.getEvent(ticket.getEventId()), ticket.getPlace(), 
+							TicketLocal.Category.values()[ticket.getCategory().ordinal()]));
+					results.put(ticket,true);
+					}
+				}
+				
+			});
+			
+		}
+		return results;
 		
 	}
 }

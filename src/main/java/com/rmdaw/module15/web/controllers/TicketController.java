@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rmdaw.module15.aspects.Loggable;
 import com.rmdaw.module15.business.facade.BookingFacadeImplementation;
@@ -95,12 +98,45 @@ public class TicketController {
 		
 		response.setHeader("Content-Disposition", "inline; "
 			+ "filename=TicketExport" + formatter.format(new Date()) + ".xml");
+		
 		try (InputStream inputStream = new FileInputStream(ticketMarshler.ticketsToXML())){
 			IOUtils.copy(inputStream, response.getOutputStream());
 		    response.flushBuffer();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	@Loggable
+	@GetMapping("/importXML")
+	public String doXMLExport(Model model)  {
+		
+		return "tickets/import";
+	}
+	
+	@Loggable
+	@PostMapping("/importXML")
+	public String doXMLImport(@RequestParam("file") MultipartFile multipart, Model model)  {
+		try {
+			
+			List<TicketLocal> tickets = ticketMarshler.ticketsToXML(multipart.getInputStream()).getTickets();
+			
+			Map<ITicket, Boolean> results = facade.loadBatchTickets(tickets
+										.stream()
+										.map(ITicket.class::cast)
+										.collect(Collectors.toList()));
+			model.addAttribute("results", results);
+
+			model.addAttribute(MESSAGE_SUCCESS, "Xml was parsed");
+		} catch (Exception e) {
+			model.addAttribute(MESSAGE_ERROR, "Could not parse");
+		}
+		
+		
+		
+		
+		return "tickets/import";
 	}
 	
 	@Loggable

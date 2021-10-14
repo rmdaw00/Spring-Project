@@ -18,6 +18,40 @@
         <ticketPlace>17</ticketPlace>
     </ticket>
     <ticket>
+        <ticketId>46</ticketId>
+        <eventID>1</eventID>
+        <event>
+            <date>2021-10-17T00:00:00-04:00</date>
+            <id>1</id>
+            <title>ZOD</title>
+        </event>
+        <userID>19</userID>
+        <user>
+            <email>apat@cc.coco</email>
+            <id>19</id>
+            <name>Patricia M.</name>
+        </user>
+        <ticketCategory>STANDARD</ticketCategory>
+        <ticketPlace>19</ticketPlace>
+    </ticket>
+    <ticket>
+        <ticketId>47</ticketId>
+        <eventID>1</eventID>
+        <event>
+            <date>2021-10-17T00:00:00-04:00</date>
+            <id>1</id>
+            <title>ZOD</title>
+        </event>
+        <userID>19</userID>
+        <user>
+            <email>apat@cc.coco</email>
+            <id>19</id>
+            <name>Patricia M.</name>
+        </user>
+        <ticketCategory>STANDARD</ticketCategory>
+        <ticketPlace>20</ticketPlace>
+    </ticket>
+    <ticket>
         <ticketId>45</ticketId>
         <eventID>42</eventID>
         <event>

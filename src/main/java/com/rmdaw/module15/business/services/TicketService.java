@@ -1,6 +1,7 @@
 package com.rmdaw.module15.business.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,8 @@ public class TicketService {
 		return ticketDAO.cancelTicket(ticketId);
 	}
 	
+	public Map<ITicket, Boolean> loadBatchTickets(List<ITicket> tickets){
+		return ticketDAO.loadBatchTickets(tickets);
+	}
 	
 }

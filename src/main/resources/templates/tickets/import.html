@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Welcome Not</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+<body>
+  	<div th:replace="/frags/header::header"></div>
+  	<div th:replace="/frags/alert::alert"></div>
+  	<div th:replace="/frags/menu::ticket"></div>
+  	
+	<div class="container">
+		<div class="row gx-5 p-3" >
+		  	<form action="/tickets/importXML" method="post" enctype="multipart/form-data">
+		  			  	
+			  	<div class="row mb-3 justify-content-center align-items-center">
+				  	<div class="form-group col-auto">
+				  		<label for="file">XML file: </label>
+				  	</div>
+				  	<div class="form-group col-auto">
+				  		<input type="file" class="form-control" name="file" id="file" accept = ".xml">
+				  	</div>
+				  	<div class="form-group col-auto">
+				  		<input type="submit"  class="btn btn-primary" value="submit"/>
+				  	</div>
+			  	</div>
+ 		
+		  	</form>
+	  	</div>
+	  	<div class="row gx-5 p-3" >
+	  		<div class="row mb-3">
+	  			<div class="col-auto">
+	  				<p th:if="${results!=null}" th:text="${results.size + ' records processed'}">
+	  				<ul th:each="entry:${results}" 
+	  					th:with="eventName=${events.get(entry.key.eventId)},
+	  							userName=${users.get(entry.key.userId)},
+	  							liClass=${entry.value?'text-success':'text-danger'},
+	  							msg=${entry.value?' was successfully added':' adding failed'},
+	  							userId=${entry.key.userId},
+	  							eventId=${entry.key.eventId},
+	  							place=${entry.key.place},
+	  							cat=${entry.key.category}
+	  							" >
+	  					
+	  						<li th:text="${'Record Event: ' + 
+	  									eventName + ' (' + eventId + '), ' + 
+	  									userName + ' (' + userId + '), ' + 
+	  									' Place: ' + place + 
+	  									' Category: ' + cat + msg
+	  									}"
+	  							th:class="${liClass}">
+ 
+	  					</li>
+	  				</ul>
+	  			</div>
+	  		</div>
+	  	</div>
+	  	
+  	</div>
+</body>
+</html>

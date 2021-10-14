@@ -1,13 +1,17 @@
 package com.rmdaw.module15.web;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
@@ -68,7 +72,11 @@ public class TicketMarshler {
     }
 	
 	
-	
+	public Tickets ticketsToXML(InputStream is)  {
+
+        return (Tickets) marshaller.unmarshal(new StreamSource(is)); 
+        
+    }
 
 	
 	
