@@ -32,6 +32,8 @@ public interface TicketsRepository extends JpaRepository<Ticket, Long> {
 //			+ " ORDER BY u.useremail ASC ")
 	public List<Ticket> findTicketsByEventID(long eventId, Pageable pageable);
 	
+	
+	public List<Ticket> findByEventIDAndTicketPlace(long eventId, int ticketPlace);
 	//public List<Ticket> findTicketsByEvent(Event event, Sort sort, Pageable pageable);
 	//public List<Ticket> findTicketsByUser(User user, Sort sort, Pageable pageable);
 }

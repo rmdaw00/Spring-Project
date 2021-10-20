@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,14 +21,12 @@ import com.rmdaw.module15.data.model.interfaces.ITicket;
 @Component
 @Entity
 @Transactional
-@Table(name="TICKETS")
+@Table(name="tickets")
 public class Ticket implements ITicket {
-	
-    public enum Category {STANDARD, PREMIUM, BAR}
     
     @Id
     @Column(name = "ticketid")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ticketId = 0;
     
     @Override
@@ -39,10 +38,26 @@ public class Ticket implements ITicket {
 	@Column(name = "eventid")
     private long eventID;
     
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Event.class, optional = false)
-    @JoinTable(name = "events")
+    @ManyToOne
+    @JoinColumn(name = "eventid",insertable = false,updatable = false)
 	private Event event;
     
+	@Column(name = "userid")
+    private long userID;
+    
+    @ManyToOne
+    @JoinColumn(name = "userid",insertable = false,updatable = false)
+	private User user;
+    
+	@Column(name="ticketcategory")
+    @Enumerated(EnumType.ORDINAL)
+    private Category ticketCategory;
+	
+    public enum Category {STANDARD, PREMIUM, BAR}
+	
+    @Column(name="ticketplace")
+    private int ticketPlace;
+   
   
     public Ticket() {
     	
@@ -72,22 +87,7 @@ public class Ticket implements ITicket {
 		this.user = user;
 	}
 
-	@Column(name = "userid")
-    private long userID;
-    
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinTable(name = "users")
-	private User user;
-    
-  
 
-	@Column(name="ticketcategory")
-    @Enumerated(EnumType.ORDINAL)
-    private Category ticketCategory;
-    
-    @Column(name="ticketplace")
-    private int ticketPlace;
-   
 	@Override
 	public long getId() {
 		return ticketId;

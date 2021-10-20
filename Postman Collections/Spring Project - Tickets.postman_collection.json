@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "e177c898-291e-4617-b95d-6c04435c135c",
+		"name": "Spring Project - Tickets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tickets By User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tickets?userId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tickets"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "pageSize",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "userId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tickets By Event",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tickets?eventId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tickets"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "pageSize",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "eventId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Ticket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tickets/?userId=2&eventId=3&place=2&category=STANDARD",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tickets",
+						""
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "2",
+							"description": "Required"
+						},
+						{
+							"key": "eventId",
+							"value": "3"
+						},
+						{
+							"key": "place",
+							"value": "2"
+						},
+						{
+							"key": "category",
+							"value": "STANDARD"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Ticket",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tickets/?ticketId=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tickets",
+						""
+					],
+					"query": [
+						{
+							"key": "ticketId",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

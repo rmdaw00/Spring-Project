@@ -38,7 +38,8 @@ public class Event implements IEvent, Comparable<Event>{
 	@Column(name="eventdate")
 	private Date eventDate;
 	
-	@OneToMany(mappedBy = "event",fetch = FetchType.LAZY,
+	@OneToMany(mappedBy = "event",
+			fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
 	private Set<Ticket> tickets;
 

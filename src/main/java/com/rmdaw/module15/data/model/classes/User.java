@@ -22,7 +22,7 @@ import com.rmdaw.module15.data.model.interfaces.IUser;
 @Table(name = "users")
 public class User implements IUser, Comparable<User> {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="userid")
 	private long userId = 0;
 	

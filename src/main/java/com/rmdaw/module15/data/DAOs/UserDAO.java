@@ -64,7 +64,11 @@ public class UserDAO extends CommonDAO {
 		if (!localDataSet) {		
 			//DATABASE
 			Pageable pageable = PageRequest.of(currentPage, pageSize);
-			users.addAll(userRepo.findUserByUserNameContaining(name, pageable));
+			if (name==null) {
+				users.addAll(userRepo.findAll(pageable).getContent());
+			} else {
+				users.addAll(userRepo.findUserByUserNameContaining(name, pageable));
+			}
 			return users;
 			
 		} else {

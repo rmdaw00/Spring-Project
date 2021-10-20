@@ -40,13 +40,7 @@ public class TicketDAO extends CommonDAO{
 		
 		if (!localDataSet) {
 			Pageable pageable = PageRequest.of(currentPage, pageSize);
-			// Option 1:
-			//ticketRepo.findTicketsByUserID(user.getId(), pageable).forEach(tickets::add);
-			
-			//Option 2:
-			ticketRepo.findAll(pageable).stream()
-				.sorted((t1,t2)->t1.getEvent().getDate().compareTo(t2.getEvent().getDate()))
-				.forEach(tickets::add);
+			ticketRepo.findTicketsByUserID(user.getId(), pageable).forEach(tickets::add);
 			return tickets;
 		} else {
 			//Local Storage
@@ -83,7 +77,7 @@ public class TicketDAO extends CommonDAO{
 		if (!localDataSet) {
 			//DATABASE
 			Pageable pageable = PageRequest.of(currentPage, pageSize);
-			ticketRepo.findTicketsByUserID(event.getId(), pageable).forEach(tickets::add);
+			ticketRepo.findTicketsByEventID(event.getId(), pageable).forEach(tickets::add);
 			
 			return tickets;
 		} else {
@@ -114,23 +108,17 @@ public class TicketDAO extends CommonDAO{
 		
 		if (!localDataSet) {
 			//DATABASE
-			//Option1
-//			List<Ticket> placeTaken = ticketRepo.findEventPlaceisTaken(eventId, place);
-//			if (placeTaken.size()==0) {
-//				System.out.println("Ticket taken");
-//				return null;
-//			} 
-//			
-//				System.out.println("Ticket not taken");
 			
 			
-			//Option2
+			if (!ticketRepo.findByEventIDAndTicketPlace(eventId, place).isEmpty()) {
+				//Place is taken
+				return null;
+			} else {
+				Ticket ticket = new Ticket(userId, eventId, place, 
+						Ticket.Category.values()[category.ordinal()]);
+				return ticketRepo.save(ticket);
+			}
 			
-			
-			
-			Ticket ticket = new Ticket(userId, eventId, place, 
-									Ticket.Category.values()[category.ordinal()]);
-			return ticketRepo.save(ticket);
 		} else {
 			//Local Storage
 			if(localDB.getAllTickets().stream()
