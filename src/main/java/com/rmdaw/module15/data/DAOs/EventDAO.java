@@ -10,6 +10,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
 
 import com.rmdaw.module15.aspects.UpdateLocalDB;
@@ -49,11 +50,11 @@ public class EventDAO extends CommonDAO {
 		
 		if (!localDataSet) {
 			// DATABASE
-			Pageable pageable = PageRequest.of(currentPage, pageSize);
+			Pageable pageable = PageRequest.of(currentPage, pageSize,Direction.ASC,"eventTitle");
 			
 			if (title != null) {
 				List<IEvent> events = new ArrayList<>();
-				eventRepo.findEventByEventTitleContaining(title,pageable).forEach(events::add);
+				eventRepo.findEventByEventTitleLikeIgnoreCase("%"+title+"%",pageable).forEach(events::add);
 				return events;				
 			} else {
 				return eventRepo.findAll(pageable).stream()
