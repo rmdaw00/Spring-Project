@@ -36,7 +36,7 @@ public class EventController implements ControllerExtras {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class, "date", new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), false));
+		binder.registerCustomEditor(Date.class, "date", new CustomDateEditor(new SimpleDateFormat("yyy-MM-dd"), true));
 	}
 	
 	
@@ -134,9 +134,9 @@ public class EventController implements ControllerExtras {
 	}
 	@Loggable
 	@PostMapping("/create")
-	public String createEvent(@Valid @ModelAttribute EventLocal event, 
+	public String createEvent(@Valid @ModelAttribute IEvent event, 
 							BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors() || event.getTitle().isBlank()) {
 			model.addAttribute(MESSAGE_ERROR, MESSAGE_FORM_ERROR);
 			return createEvent(model);
 		}
@@ -173,7 +173,7 @@ public class EventController implements ControllerExtras {
 	
 	@Loggable
 	@PostMapping("/edit")
-	public String editEvent(@Valid @ModelAttribute EventLocal event, 
+	public String editEvent(@Valid @ModelAttribute IEvent event, 
 							BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute(MESSAGE_ERROR, MESSAGE_FORM_ERROR);

@@ -60,6 +60,7 @@ public class Event implements IEvent, Comparable<Event>{
     public Date getDate() {
 		return eventDate;
 	}
+    
     public void setDate(Date date) {
     	eventDate = date;
 	}

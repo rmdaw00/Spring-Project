@@ -13,6 +13,9 @@ public abstract class CommonDAO {
 	@Value("${app.localDataSet}")
 	protected boolean localDataSet;
 	
+	@Value("${app.persistLocalResults}")
+	protected boolean persistLocalResults;
+	
 	protected LocalMap localDB;
 	protected LocalStorage localStorage;
 	protected static final int PAGING_OFFSET = 1;
@@ -25,7 +28,7 @@ public abstract class CommonDAO {
 	
 	@Loggable
 	public void saveLocalDB() {
-		if (localDataSet) {
+		if (localDataSet && persistLocalResults) {
 			localStorage.saveData();
 
 			System.out.println("called from common class");

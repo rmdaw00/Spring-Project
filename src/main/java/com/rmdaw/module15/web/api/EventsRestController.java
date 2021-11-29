@@ -90,6 +90,8 @@ public class EventsRestController {
 			@RequestParam(value="title") String title, 
 			@RequestParam(value="date",required = false) String date) {
 		
+		if (title.isBlank()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		
 		IEvent event = Boolean.TRUE.equals(local)? new EventLocal():new Event();
 		event.setId(0);
 		event.setTitle(title);
