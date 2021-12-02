@@ -47,7 +47,8 @@ public class DefaultModelAttributesController {
 	
 	@ModelAttribute("event")
 	public IEvent getEvent() {
-		return Boolean.TRUE.equals(local)?new EventLocal():new Event();
+		return new Event();
+//		return Boolean.TRUE.equals(local)?new EventLocal():new Event();
 	}
 	
 	@ModelAttribute("user")

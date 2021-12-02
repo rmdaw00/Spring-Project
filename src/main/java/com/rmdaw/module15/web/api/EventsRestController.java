@@ -22,6 +22,11 @@ import com.rmdaw.module15.data.model.classes.local.EventLocal;
 import com.rmdaw.module15.data.model.interfaces.IEvent;
 import com.rmdaw.module15.web.DateUtils;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
+@Api(tags = "Events Rest Controller.")
 @RestController
 @RequestMapping("/api/events")
 public class EventsRestController {
@@ -39,7 +44,10 @@ public class EventsRestController {
 	
 	@Loggable
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "getEventsByTitle",
+				notes="Getting All Events or Events by Title, if title is supplied it will narrow down the result, paging is also implemented")
 	public ResponseEntity<List<IEvent>> getEventsByTitle(
+			@ApiParam("Title is not required, if not supplied it will return all")
 			@RequestParam(value="title",required=false) String title, 
 			@RequestParam(value="pageSize", required = false, defaultValue = "20") int pageSize, 
 			@RequestParam(value="page", required = false, defaultValue="1") int page) {

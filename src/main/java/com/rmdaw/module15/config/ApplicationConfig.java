@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
@@ -19,10 +20,13 @@ import com.rmdaw.module15.data.model.classes.local.TicketLocal;
 import com.rmdaw.module15.data.model.classes.local.UserLocal;
 import com.rmdaw.module15.data.model.interfaces.ITicket;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
+
 @Configuration
 @ComponentScan(basePackages = "com.rmdaw.module15")
 @PropertySource("classpath:application.properties")
 @EnableAspectJAutoProxy 
+@EnableWebMvc	//notice after this was added /Swagger-ui/ started working
 public class ApplicationConfig extends WebMvcConfigurationSupport {
 	
 	@Override
@@ -30,7 +34,11 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
 		//super.addResourceHandlers(registry); //XXX should I keep?
 		registry.addResourceHandler("css/**")
 				.addResourceLocations("classpath:static/css/");
+
 	}
+	
+	
+	
 	
 	 @Bean
 	    public Java8TimeDialect java8TimeDialect() {

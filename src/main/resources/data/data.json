@@ -32,10 +32,10 @@
       "email" : "rhh@dd.c"
     } ],
     "id" : 39,
-    "userId" : 33,
-    "place" : 1,
     "eventId" : 1,
-    "category" : "STANDARD"
+    "userId" : 33,
+    "category" : "STANDARD",
+    "place" : 1
   } ],
   "ticket:18" : [ "com.rmdaw.module15.data.model.classes.local.TicketLocal", {
     "event" : [ "com.rmdaw.module15.data.model.classes.local.EventLocal", {
@@ -45,10 +45,10 @@
     } ],
     "user" : null,
     "id" : 18,
-    "userId" : 13,
-    "place" : 16,
     "eventId" : 1,
-    "category" : "STANDARD"
+    "userId" : 13,
+    "category" : "STANDARD",
+    "place" : 16
   } ],
   "event:7" : [ "com.rmdaw.module15.data.model.classes.local.EventLocal", {
     "id" : 7,
@@ -63,7 +63,7 @@
   "event:2" : [ "com.rmdaw.module15.data.model.classes.local.EventLocal", {
     "id" : 2,
     "date" : [ "java.util.Date", "2021-11-02T04:00:00.000+00:00" ],
-    "title" : "Zoom Conference Meeting"
+    "title" : "Zoom Conferencer"
   } ],
   "event:3" : [ "com.rmdaw.module15.data.model.classes.local.EventLocal", {
     "id" : 3,
@@ -82,14 +82,14 @@
       "email" : "rhh@dd.c"
     } ],
     "id" : 40,
-    "userId" : 33,
-    "place" : 2,
     "eventId" : 1,
-    "category" : "STANDARD"
+    "userId" : 33,
+    "category" : "STANDARD",
+    "place" : 2
   } ],
   "event:50" : [ "com.rmdaw.module15.data.model.classes.local.EventLocal", {
     "id" : 50,
-    "date" : [ "java.util.Date", "+202010-02-01T05:00:00.000+00:00" ],
+    "date" : [ "java.util.Date", "2010-02-01T05:00:00.000+00:00" ],
     "title" : "some event"
   } ],
   "ticket:44" : [ "com.rmdaw.module15.data.model.classes.local.TicketLocal", {
@@ -104,10 +104,10 @@
       "email" : "sdds@sdsd"
     } ],
     "id" : 44,
-    "userId" : 43,
-    "place" : 1,
     "eventId" : 42,
-    "category" : "BAR"
+    "userId" : 43,
+    "category" : "BAR",
+    "place" : 1
   } ],
   "ticket:45" : [ "com.rmdaw.module15.data.model.classes.local.TicketLocal", {
     "event" : [ "com.rmdaw.module15.data.model.classes.local.EventLocal", {
@@ -121,14 +121,14 @@
       "email" : "rhh@dd.c"
     } ],
     "id" : 45,
-    "userId" : 33,
-    "place" : 2,
     "eventId" : 42,
-    "category" : "STANDARD"
+    "userId" : 33,
+    "category" : "STANDARD",
+    "place" : 2
   } ],
   "event:52" : [ "com.rmdaw.module15.data.model.classes.local.EventLocal", {
     "id" : 52,
-    "date" : [ "java.util.Date", "+202010-02-01T05:00:00.000+00:00" ],
+    "date" : [ "java.util.Date", "2010-02-01T05:00:00.000+00:00" ],
     "title" : "some event"
   } ],
   "ticket:21" : [ "com.rmdaw.module15.data.model.classes.local.TicketLocal", {
@@ -143,14 +143,14 @@
       "email" : "apat@cc.coco"
     } ],
     "id" : 21,
-    "userId" : 19,
-    "place" : 17,
     "eventId" : 1,
-    "category" : "STANDARD"
+    "userId" : 19,
+    "category" : "STANDARD",
+    "place" : 17
   } ],
   "event:51" : [ "com.rmdaw.module15.data.model.classes.local.EventLocal", {
     "id" : 51,
-    "date" : [ "java.util.Date", "+202010-03-05T05:00:00.000+00:00" ],
+    "date" : [ "java.util.Date", "2010-03-05T05:00:00.000+00:00" ],
     "title" : "some event"
   } ],
   "ticket:48" : [ "com.rmdaw.module15.data.model.classes.local.TicketLocal", {
@@ -165,10 +165,10 @@
       "email" : "apat@cc.coco"
     } ],
     "id" : 48,
-    "userId" : 19,
-    "place" : 25,
     "eventId" : 1,
-    "category" : "STANDARD"
+    "userId" : 19,
+    "category" : "STANDARD",
+    "place" : 25
   } ],
   "ticket:46" : [ "com.rmdaw.module15.data.model.classes.local.TicketLocal", {
     "event" : [ "com.rmdaw.module15.data.model.classes.local.EventLocal", {
@@ -182,10 +182,10 @@
       "email" : "apat@cc.coco"
     } ],
     "id" : 46,
-    "userId" : 19,
-    "place" : 19,
     "eventId" : 1,
-    "category" : "STANDARD"
+    "userId" : 19,
+    "category" : "STANDARD",
+    "place" : 19
   } ],
   "ticket:47" : [ "com.rmdaw.module15.data.model.classes.local.TicketLocal", {
     "event" : [ "com.rmdaw.module15.data.model.classes.local.EventLocal", {
@@ -199,10 +199,10 @@
       "email" : "apat@cc.coco"
     } ],
     "id" : 47,
-    "userId" : 19,
-    "place" : 20,
     "eventId" : 1,
-    "category" : "STANDARD"
+    "userId" : 19,
+    "category" : "STANDARD",
+    "place" : 20
   } ],
   "user:43" : [ "com.rmdaw.module15.data.model.classes.local.UserLocal", {
     "name" : "Peter",
@@ -216,7 +216,7 @@
   } ],
   "event:49" : [ "com.rmdaw.module15.data.model.classes.local.EventLocal", {
     "id" : 49,
-    "date" : [ "java.util.Date", "+202010-03-05T05:00:00.000+00:00" ],
+    "date" : [ "java.util.Date", "2010-03-05T05:00:00.000+00:00" ],
     "title" : "some event"
   } ],
   "user:20" : [ "com.rmdaw.module15.data.model.classes.local.UserLocal", {

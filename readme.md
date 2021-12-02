@@ -2,7 +2,7 @@
 
 This Spring application runs MVC website locally, it manages events, tickets and users, you can CRUD all of these entities, book tickets, do specific search on events or users. it also allows to display tickets on PDF, XML, and import XML ticket batch.
 
-It also exposes REST APIs, folder with **Postman Collections** show all requests that can be made.
+It also exposes REST APIs, folder with **Postman Collections** show all requests that can be made. Documentation is also available after running the application on SwaggerUI, **localhost:8080/swagger-ui/**. note that there are two groups of definitions for REST and MVC controllers
 
 App is highy abstracted and uses facade to reach internal methods
 
@@ -24,3 +24,4 @@ Project Includes:
 - Spring Rest API
 - Unit Tests with Spring 
 - Cucumber Testing with MockMvc for API Controllers and Selenium for MVC web access (%100 local storage, DB storage some failing due to some unimplemented features, check commit for further details)
+- SwaggerUI integration

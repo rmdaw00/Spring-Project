@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rmdaw.module15.aspects.Loggable;
 import com.rmdaw.module15.business.facade.BookingFacadeImplementation;
+import com.rmdaw.module15.data.model.classes.Event;
 import com.rmdaw.module15.data.model.classes.local.EventLocal;
 import com.rmdaw.module15.data.model.interfaces.IEvent;
+
+import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("/events")
@@ -36,7 +39,7 @@ public class EventController implements ControllerExtras {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class, "date", new CustomDateEditor(new SimpleDateFormat("yyy-MM-dd"), true));
+		binder.registerCustomEditor(Date.class, "date", new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
 	}
 	
 	
@@ -134,7 +137,7 @@ public class EventController implements ControllerExtras {
 	}
 	@Loggable
 	@PostMapping("/create")
-	public String createEvent(@Valid @ModelAttribute IEvent event, 
+	public String createEvent(@Valid @ModelAttribute EventLocal event, 
 							BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors() || event.getTitle().isBlank()) {
 			model.addAttribute(MESSAGE_ERROR, MESSAGE_FORM_ERROR);
@@ -173,7 +176,7 @@ public class EventController implements ControllerExtras {
 	
 	@Loggable
 	@PostMapping("/edit")
-	public String editEvent(@Valid @ModelAttribute IEvent event, 
+	public String editEvent(@Valid @ModelAttribute EventLocal event, 
 							BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute(MESSAGE_ERROR, MESSAGE_FORM_ERROR);
