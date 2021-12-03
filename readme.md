@@ -1,4 +1,5 @@
-## Ticket Booking App
+## Even Booking App
+![Event Booking Screenshot](0-Extras/screenshot.jpg "Screenshot")
 
 This Spring application runs MVC website locally, it manages events, tickets and users, you can CRUD all of these entities, book tickets, do specific search on events or users. it also allows to display tickets on PDF, XML, and import XML ticket batch.
 
@@ -19,9 +20,18 @@ change the boolean of **app.localData** set in application.properties
 This document is just a abstract guide, not meant to point out features. please check code for proper feel.
 
 Project Includes:
-- Making MVC website work with local map, postgres DB, *for now it was intended to work flawlessly with local hashmap "app.localData=true"*
+- Making responsive MVC website, using Thymeleaf fragments(components) and Bootstrap
+- Data Storage
+	- Local HashMap (in memory)(fully functional according to requirements) 
+	- Postgres  (functional with archit. limitations)(full limitation will be done in a project fork incl Spring Security) 
+	- toggled using property app.localData=true/false
+- Aspect Oriented Programming: 
+	- logging
+	- saving to localDB
 - Spring Data 
 - Spring Rest API
 - Unit Tests with Spring 
-- Cucumber Testing with MockMvc for API Controllers and Selenium for MVC web access (%100 local storage, DB storage some failing due to some unimplemented features, check commit for further details)
+- Cucumber Integration Testing (%100 local storage, DB storage some failing due to some unimplemented features, check commit for further details)
+	- MockMvc for API Controllers
+	- Selenium for MVC web access 
 - SwaggerUI integration
